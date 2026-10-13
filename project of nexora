@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA | AI-Powered Student Academic & Success Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090d1b;
+  --panel: #11182b;
+  --panel-hover: #162038;
+  --line: #27324d;
+  --line-bright: #39486d;
+  --text: #f4f7ff;
+  --text-muted: #9ca9c6;
+  --text-sub: #cbd5e1;
+
+  --mint: #55e6c1;
+  --mint-glow: rgba(85, 230, 193, 0.22);
+  --purple: #9b7bff;
+  --purple-glow: rgba(155, 123, 255, 0.25);
+  --blue: #69a7ff;
+  --blue-glow: rgba(105, 167, 255, 0.22);
+  --cyan: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.22);
+  --amber: #f59e0b;
+  --amber-glow: rgba(245, 158, 11, 0.2);
+  --red: #ef4444;
+  --red-glow: rgba(239, 68, 68, 0.2);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(85, 230, 193, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(155, 123, 255, 0.05) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--line-bright); }
+
+/* Header */
+header {
+  padding: 14px 24px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--mint), var(--purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #090d1b;
+  box-shadow: 0 0 16px var(--mint-glow);
+}
+
+.logo-text { 
+  color: var(--mint); 
+  font-size: 22px; 
+  font-weight: 800; 
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-ai-badge {
+  font-size: 10px;
+  background: linear-gradient(90deg, var(--purple), var(--mint));
+  color: #090d1b;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.logo-sub { 
+  color: var(--text-muted); 
+  font-size: 11px; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Header Center - Perspective Switcher */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.role-switcher {
+  background: #090d1b;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.role-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.role-btn.active {
+  background: linear-gradient(135deg, var(--mint), #2ecc71);
+  color: #090d1b;
+  box-shadow: 0 2px 10px var(--mint-glow);
+}
+
+/* Header Search */
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #090d1b;
+  border: 1px solid var(--line);
+  padding: 6px 10px 6px 14px;
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.header-search:focus-within {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px var(--mint-glow);
+}
+
+.header-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 14px;
+  width: 170px;
+}
+
+.header-search button {
+  background: var(--mint);
+  color: #07151b;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.header-search button:hover {
+  opacity: 0.9;
+}
+
+.header-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.audio-btn {
+  background: #090d1b;
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.audio-btn:hover {
+  color: var(--text);
+  border-color: var(--mint);
+}
+
+.college-tag {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  border-left: 1px solid var(--line);
+  padding-left: 16px;
+}
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 255px 1fr;
+  min-height: calc(100vh - 73px);
+}
+
+/* Sidebar Nav */
+nav {
+  padding: 20px 14px;
+  background: #0c1223;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+nav .nav-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  padding: 12px 12px 4px;
+  font-weight: 800;
+}
+
+nav button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+nav button:hover {
+  color: var(--text);
+  background: #162038;
+}
+
+nav button.active {
+  background: #1c2744;
+  color: var(--mint);
+  border-color: var(--purple);
+  box-shadow: 0 4px 14px var(--purple-glow);
+}
+
+nav button .nav-pill {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(155, 123, 255, 0.2);
+  color: var(--purple);
+  border: 1px solid rgba(155, 123, 255, 0.3);
+}
+
+nav button .nav-pill.ai {
+  background: rgba(85, 230, 193, 0.18);
+  color: var(--mint);
+  border-color: rgba(85, 230, 193, 0.35);
+}
+
+/* Main Area */
+main { 
+  padding: 28px; 
+  min-width: 0; 
+  max-width: 1200px;
+}
+
+.section { display: none; }
+.section.active { 
+  display: block; 
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 { 
+  font-size: 26px; 
+  font-weight: 800; 
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+h2 { 
+  font-size: 19px; 
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+p { line-height: 1.6; }
+.muted { color: var(--text-muted); font-size: 14px; }
+
+/* Stat Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin: 20px 0 24px;
+}
+
+.card, .panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover, .panel:hover {
+  border-color: #3b4b74;
+}
+
+.stat { 
+  font-size: 32px; 
+  color: var(--mint); 
+  font-weight: 800; 
+  margin: 8px 0;
+  letter-spacing: -1px;
+}
+
+.stat.purple { color: var(--purple); }
+.stat.blue { color: var(--blue); }
+
+.card-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Progress bar */
+.progress {
+  height: 9px;
+  border-radius: 999px;
+  background: #27324d;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint), #38ef7d);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.progress.warning div {
+  background: linear-gradient(90deg, var(--amber), #f87171);
+}
+
+/* Buttons and Inputs */
+button, input, select { font: inherit; }
+
+.action {
+  background: var(--mint);
+  color: #07151b;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--mint-glow);
+}
+
+.action-secondary {
+  background: #202944;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.action-secondary:hover {
+  background: #283556;
+  border-color: var(--purple);
+}
+
+input, select {
+  background: #090d1b;
+  color: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  max-width: 100%;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px var(--mint-glow);
+}
+
+/* Profile Section */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background: #202944;
+  border: 2px solid var(--purple);
+  box-shadow: 0 4px 18px var(--purple-glow);
+}
+
+/* Tables */
+.table-wrap { 
+  overflow-x: auto; 
+  margin-top: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+th, td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+th { 
+  background: #0d1426;
+  color: var(--mint); 
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.badge.pass {
+  color: var(--mint);
+  background: #12332a;
+  border: 1px solid rgba(85, 230, 193, 0.3);
+}
+
+.badge.warning {
+  color: #fbbf24;
+  background: #362810;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Results Summary KPI Boxes */
+.results-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.kpi-box {
+  background: #0c1223;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.kpi-box p {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.kpi-box h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 4px;
+}
+
+/* College ID Card */
+.idcard-wrapper {
+  max-width: 460px;
+  background: linear-gradient(145deg, #11182b, #0c1224);
+  border: 2px solid var(--mint);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(85, 230, 193, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.id-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.id-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* AI Advanced Features Styles */
+.ai-hero-card {
+  background: linear-gradient(145deg, #121c35, #0c1426);
+  border: 1px solid var(--purple);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: 160px 1fr 240px;
+  gap: 22px;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(155, 123, 255, 0.12);
+}
+
+.ai-dial-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.ai-dial-svg {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg);
+}
+
+.ai-dial-bg {
+  fill: none;
+  stroke: #1c2744;
+  stroke-width: 10;
+}
+
+.ai-dial-bar {
+  fill: none;
+  stroke: url(#scoreGrad);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 75;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.ai-dial-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ai-dial-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--mint);
+  line-height: 1;
+}
+
+.ai-dial-lbl {
+  font-size: 9px;
+  color: var(--text-muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.ai-hero-content h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ai-prescriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ai-presc-item {
+  font-size: 12.5px;
+  background: rgba(9, 13, 27, 0.7);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--mint);
+  color: var(--text-sub);
+}
+
+.ai-hero-stats {
+  background: #090e1b;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ai-hero-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 4px;
+}
+
+.ai-hero-row:last-child { border-bottom: none; padding-bottom: 0; }
+.ai-hero-row span:first-child { color: var(--text-muted); }
+.ai-hero-row span:last-child { font-weight: 700; color: #fff; }
+
+/* AI Tutor Chat */
+.chat-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  height: 680px;
+}
+
+.chat-personas {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.persona-btn {
+  background: #0c1223;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text);
+}
+
+.persona-btn:hover { border-color: var(--purple); }
+.persona-btn.active {
+  background: rgba(155, 123, 255, 0.15);
+  border-color: var(--purple);
+  box-shadow: 0 0 12px var(--purple-glow);
+}
+
+.persona-btn h4 { font-size: 13px; font-weight: 700; color: var(--mint); }
+.persona-btn p { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.prompt-chips-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chip-prompt {
+  background: #090e1b;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.chip-prompt:hover {
+  color: var(--mint);
+  border-color: var(--mint);
+}
+
+.chat-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chat-head {
+  padding: 14px 20px;
+  background: #0c1223;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.chat-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 85%;
+}
+
+.chat-msg.bot { align-self: flex-start; }
+.chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.chat-msg.bot .chat-bubble {
+  background: #0c1223;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.chat-msg.user .chat-bubble {
+  background: #1c2744;
+  border: 1px solid var(--purple);
+  color: #fff;
+}
+
+.chat-input-row {
+  padding: 14px 20px;
+  background: #0c1223;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-row input { flex: 1; }
+
+/* What-If Simulator */
+.simulator-card {
+  background: #0c1223;
+  border: 1px solid var(--purple);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 22px;
+  align-items: center;
+}
+
+.sim-slider-row {
+  margin-bottom: 14px;
+}
+
+.sim-slider-row label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sim-slider-row span {
+  color: var(--mint);
+  font-weight: 700;
+}
+
+input[type=range] {
+  width: 100%;
+  height: 6px;
+  background: #090d1b;
+  border-radius: 999px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--mint);
+  cursor: pointer;
+}
+
+.sim-kpi-result {
+  background: #11182b;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  text-align: center;
+}
+
+/* Responsive */
+@media(max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  nav .nav-label { display: none; }
+  nav button { min-width: max-content; width: auto; padding: 8px 12px; font-size: 13px; }
+  main { padding: 18px; }
+  header { padding: 12px 16px; }
+  .college-tag { display: none; }
+  .ai-hero-card { grid-template-columns: 1fr; }
+  .chat-container { grid-template-columns: 1fr; height: auto; }
+  .sim-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+  <div class="brand-wrapper">
+    <div class="logo-icon">✦</div>
+    <div>
+      <div class="logo-text">NEXORA <span class="logo-ai-badge">AI 4.0</span></div>
+      <div class="logo-sub">Intelligent Academic Platform</div>
+    </div>
+  </div>
+
+  <div class="header-center">
+    <div class="role-switcher">
+      <button class="role-btn active" id="roleBtnStudent" onclick="switchRole('student')">🎓 Student Hub</button>
+      <button class="role-btn" id="roleBtnFaculty" onclick="switchRole('faculty')">👨‍🏫 Faculty Portal</button>
+    </div>
+  </div>
+
+  <div class="header-actions-right">
+    <div class="header-search">
+      <span>🔍</span>
+      <input id="searchRollInput" type="text" placeholder="Roll no (e.g. 107)..." onkeydown="if(event.key==='Enter') searchStudent()"/>
+      <button onclick="searchStudent()">Search</button>
+    </div>
+    <div class="college-tag">St. Marys Group of Institutions</div>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- Navigation Sidebar -->
+<nav>
+  <span class="nav-label">Academic Records</span>
+  <button class="active" onclick="showSection('dashboard', this)"><span>⌂</span> Dashboard</button>
+  <button onclick="showSection('profile', this)"><span>♙</span> My Profile</button>
+  <button onclick="showSection('attendance', this)"><span>▦</span> Attendance</button>
+  <button onclick="showSection('results', this)"><span>▤</span> Semester Results</button>
+  <button onclick="showSection('timetable', this)"><span>◷</span> Daily Schedule</button>
+  <button onclick="showSection('idcard', this)"><span>▣</span> College ID</button>
+
+  <span class="nav-label">AI Intelligence</span>
+  <button onclick="showSection('tutor', this)"><span>🤖</span> AI Study Tutor</button>
+  <button onclick="showSection('planner', this)"><span>📅</span> AI Study Planner</button>
+  <button onclick="showSection('faculty', this)"><span>👨‍🏫</span> Faculty At-Risk View</button>
+</nav>
+
+<main>
+
+  <div class="panel" style="padding:10px 14px; margin-top:-8px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between;">
+    <span>👤 Current student: <b id="contextStudentName">Saijeevana</b> · Roll No: <b id="contextStudentRoll">107</b></span>
+  </div>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="section active">
+    <h1 id="welcomeText">Welcome, Saijeevana! 👋</h1>
+    <p class="muted">Your academic journey, attendance, exam marks, and predictive AI insights.</p>
+
+    <div class="ai-hero-card" style="margin-top: 18px;">
+      <div class="ai-dial-box">
+        <svg class="ai-dial-svg" viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#55e6c1"/>
+              <stop offset="100%" stop-color="#9b7bff"/>
+            </linearGradient>
+          </defs>
+          <circle class="ai-dial-bg" cx="60" cy="60" r="50"/>
+          <circle id="dashScoreRing" class="ai-dial-bar" cx="60" cy="60" r="50"/>
+        </svg>
+        <div class="ai-dial-text">
+          <div class="ai-dial-num" id="dashScoreNum">76%</div>
+          <div class="ai-dial-lbl">Health Index</div>
+        </div>
+      </div>
+
+      <div class="ai-hero-content">
+        <h3><span>⚡</span> Nexora Predictive Early-Warning</h3>
+        <p class="muted" id="dashAiMessage" style="font-size:13px; line-height:1.5;">
+          Your test scores are solid, but your attendance requires attention for exam eligibility.
+        </p>
+        <div class="ai-prescriptions" id="dashAiPrescriptions"></div>
+      </div>
+
+      <div class="ai-hero-stats">
+        <div class="ai-hero-row"><span>Predicted SGPA</span><span style="color:var(--mint);" id="dashPredGpa">7.85 / 10.0</span></div>
+        <div class="ai-hero-row"><span>Detention Risk</span><span style="color:var(--amber);" id="dashDetentionRisk">Moderate</span></div>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <p class="card-label">Attendance</p>
+        <div class="stat" id="dashAttendanceStat">67%</div>
+        <div class="progress" id="dashAttendanceBar"><div style="width: 67%"></div></div>
+      </div>
+      <div class="card">
+        <p class="card-label">Roll Number</p>
+        <div class="stat blue" id="dashRollNo">107</div>
+        <p class="muted">CSE Department</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Average Marks</p>
+        <div class="stat purple" id="dashAvgMarks">74.5%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Section -->
+  <section id="profile" class="section">
+    <h1>My Profile</h1>
+    <div class="panel profile">
+      <img id="profilePhoto" class="avatar" alt="Profile photo" src="https://placehold.co/200x200/202944/ffffff?text=Photo">
+      <div>
+        <h2 id="profileName">Saijeevana</h2>
+        <p class="muted" id="profileMeta">Student • CSE • Roll No. 107</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attendance Section -->
+  <section id="attendance" class="section">
+    <h1>Attendance Overview</h1>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Subject</th><th>Attended</th><th>Total</th><th>Percentage</th><th>Status</th></tr></thead>
+          <tbody id="attendanceRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="results" class="section">
+    <h1>Semester Results & Simulator</h1>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Subject</th><th>Type</th><th>Internal</th><th>External</th><th>Total</th><th>Grade</th></tr></thead>
+          <tbody id="resultRows"></tbody>
+        </table>
+      </div>
+
+      <div class="simulator-card">
+        <h3 style="color:var(--mint);">🔮 Interactive What-If GPA Simulator</h3>
+        <div class="sim-grid">
+          <div>
+            <div class="sim-slider-row">
+              <label>External Score Avg: <span id="simExtLbl">60 / 70</span></label>
+              <input type="range" id="simExtInput" min="30" max="70" value="60" oninput="runGpaSim()">
+            </div>
+          </div>
+          <div class="sim-kpi-result">
+            <p style="font-size:11px; text-transform:uppercase; color:var(--text-muted);">Projected SGPA</p>
+            <div style="font-size:38px; font-weight:800; color:var(--mint);" id="simGpaVal">8.12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timetable Section -->
+  <section id="timetable" class="section">
+    <h1>Daily Schedule</h1>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Subject</th><th>Room</th><th>Type</th></tr></thead>
+          <tbody id="timetableRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ID Card Section -->
+  <section id="idcard" class="section">
+    <h1>College ID Card</h1>
+    <div class="idcard-wrapper">
+      <div class="id-header">
+        <div>
+          <div class="logo-text" style="font-size: 18px;">✦ NEXORA</div>
+          <div class="logo-sub">STUDENT ID</div>
+        </div>
+        <div class="badge pass">2026–27</div>
+      </div>
+      <div class="profile" style="margin: 16px 0;">
+        <img id="idPhoto" class="avatar" alt="ID photo" src="https://placehold.co/200x200/202944/ffffff?text=Photo">
+        <div>
+          <h2 id="idName">Saijeevana</h2>
+          <p><b>Roll No:</b> <span id="idRoll">107</span></p>
+          <p><b>Branch:</b> CSE</p>
+        </div>
+      </div>
+      <div class="id-footer">
+        <span>St. Marys Group of Institutions</span>
+        <span style="color: var(--mint); font-weight: bold;">ID: NX-107</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Tutor Section -->
+  <section id="tutor" class="section">
+    <h1>Nexora AI Study Companion 🤖</h1>
+    <div class="chat-container">
+      <div class="chat-personas">
+        <span class="card-label">Quick Prompts</span>
+        <button class="chip-prompt" onclick="askQuickPrompt('Explain B-Trees vs B+ Trees with DBMS use cases.')">📌 B-Trees vs B+ Trees</button>
+        <button class="chip-prompt" onclick="askQuickPrompt('Explain the 4 Coffman conditions for Deadlock.')">📌 OS Deadlock</button>
+      </div>
+      <div class="chat-box">
+        <div class="chat-head">
+          <h3 style="font-size:15px; color:#fff;">Socratic Mentor</h3>
+        </div>
+        <div class="chat-messages" id="chatMsgList">
+          <div class="chat-msg bot">
+            <div class="logo-icon" style="width:30px; height:30px; font-size:14px;">✦</div>
+            <div class="chat-bubble">Hello Saijeevana! How can I assist with your studies today?</div>
+          </div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatUserQuery" placeholder="Ask any question..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
+          <button class="action" onclick="sendChatMessage()">Send 🚀</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planner Section -->
+  <section id="planner" class="section">
+    <h1>Adaptive AI Study Planner 📅</h1>
+    <div class="panel">
+      <p>Tasks automatically balanced based on your attendance and test scores.</p>
+    </div>
+  </section>
+
+  <!-- Faculty Section -->
+  <section id="faculty" class="section">
+    <h1>Faculty Portal</h1>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Roll No</th><th>Student Name</th><th>Attendance</th><th>Risk Tier</th></tr></thead>
+          <tbody>
+            <tr><td><b>107</b></td><td>Saijeevana</td><td>67%</td><td><span class="badge warning">Moderate Risk</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+const students = {
+  "107": {
+    name: "Saijeevana",
+    rollNo: "107",
+    department: "Computer Science and Engineering (CSE)",
+    branchCode: "CSE",
+    year: "Second Year",
+    semester: 2,
+    college: "St. Marys Group of Institutions",
+    healthScore: 76,
+    predictedGpa: "7.85 / 10.0",
+    detentionRisk: "Moderate (Attendance)",
+    aiMessage: "Your test scores are solid (74.5%), but your 67% attendance requires attention.",
+    prescriptions: ["Attend the next 4 Database lectures.", "Revise B+ Trees for upcoming midterms."],
+    attendance: {
+      overall: 67,
+      subjects: [
+        { name: "Mathematics", attended: 20, total: 30 },
+        { name: "Data Structures", attended: 22, total: 30 },
+        { name: "Database Systems", attended: 18, total: 30 },
+        { name: "Operating Systems", attended: 20, total: 30 }
+      ]
+    },
+    results: {
+      2: [
+        { name: "Mathematics-II", type: "Theory", internal: 25, external: 59 },
+        { name: "Data Structures", type: "Theory", internal: 26, external: 61 },
+        { name: "Database Systems", type: "Theory", internal: 24, external: 57 },
+        { name: "Operating Systems", type: "Theory", internal: 25, external: 60 }
+      ]
+    },
+    timetable: [
+      { time: "09:00–10:00", subject: "Mathematics", room: "Room 101", type: "Lecture" },
+      { time: "10:00–11:00", subject: "Data Structures", room: "Room 204", type: "Lecture" }
+    ]
+  }
+};
+
+function getStudentByRoll(roll) {
+  return students[String(roll).trim()] || students["107"];
+}
+
+let currentRoll = "107";
+
+function showSection(id, button) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (button) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+  }
+}
+
+function switchRole(role) {
+  if (role === 'faculty') showSection('faculty');
+  else showSection('dashboard');
+}
+
+function loadStudentByRoll(roll) {
+  const student = getStudentByRoll(roll);
+  currentRoll = student.rollNo;
+  document.getElementById("contextStudentName").textContent = student.name;
+  document.getElementById("contextStudentRoll").textContent = student.rollNo;
+  document.getElementById("welcomeText").textContent = `Welcome, ${student.name}! 👋`;
+  document.getElementById("dashRollNo").textContent = student.rollNo;
+  document.getElementById("dashScoreNum").textContent = student.healthScore + "%";
+  document.getElementById("dashScoreRing").style.strokeDashoffset = 314 - (314 * (student.healthScore / 100));
+  document.getElementById("dashAiMessage").innerHTML = student.aiMessage;
+  document.getElementById("dashPredGpa").textContent = student.predictedGpa;
+  document.getElementById("dashDetentionRisk").textContent = student.detentionRisk;
+  document.getElementById("dashAttendanceStat").textContent = student.attendance.overall + "%";
+  document.getElementById("dashAvgMarks").textContent = "74.5%";
+
+  const prescWrap = document.getElementById("dashAiPrescriptions");
+  prescWrap.innerHTML = "";
+  student.prescriptions.forEach(p => { prescWrap.innerHTML += `<div class="ai-presc-item">✦ ${p}</div>`; });
+
+  // Attendance rows
+  const attTbody = document.getElementById("attendanceRows");
+  attTbody.innerHTML = "";
+  student.attendance.subjects.forEach(sub => {
+    const pct = Math.round((sub.attended / sub.total) * 100);
+    attTbody.innerHTML += `<tr><td><b>${sub.name}</b></td><td>${sub.attended}</td><td>${sub.total}</td><td>${pct}%</td><td><span class="badge ${pct>=75?'pass':'warning'}">${pct>=75?'Eligible':'Shortage'}</span></td></tr>`;
+  });
+
+  // Results rows
+  const resTbody = document.getElementById("resultRows");
+  resTbody.innerHTML = "";
+  student.results[2].forEach(sub => {
+    const total = sub.internal + sub.external;
+    resTbody.innerHTML += `<tr><td><b>${sub.name}</b></td><td>${sub.type}</td><td>${sub.internal}/30</td><td>${sub.external}/70</td><td><b>${total}</b>/100</td><td><span style="color:var(--mint); font-weight:700;">A</span></td></tr>`;
+  });
+
+  // Timetable rows
+  const timeTbody = document.getElementById("timetableRows");
+  timeTbody.innerHTML = "";
+  student.timetable.forEach(slot => {
+    timeTbody.innerHTML += `<tr><td><b>${slot.time}</b></td><td>${slot.subject}</td><td>${slot.room}</td><td>${slot.type}</td></tr>`;
+  });
+}
+
+function searchStudent() {
+  const query = document.getElementById("searchRollInput").value.trim();
+  loadStudentByRoll(query);
+}
+
+function runGpaSim() {
+  const ext = parseInt(document.getElementById("simExtInput").value);
+  document.getElementById("simExtLbl").textContent = `${ext} / 70`;
+  document.getElementById("simGpaVal").textContent = ((ext * 0.08) + 2.4).toFixed(2);
+}
+
+function sendChatMessage() {
+  const input = document.getElementById("chatUserQuery");
+  const text = input.value.trim();
+  if (!text) return;
+  appendChat("user", text);
+  input.value = "";
+  setTimeout(() => {
+    appendChat("bot", `<b>Nexora AI Response:</b> Analyzing your query regarding "${text}" in the context of your CSE curriculum.`);
+  }, 400);
+}
+
+function askQuickPrompt(pText) {
+  appendChat("user", pText);
+  setTimeout(() => {
+    appendChat("bot", `<b>Nexora AI Response:</b> ${pText.includes('B-Trees') ? 'B-Trees store pointers everywhere; B+ Trees store data only in leaf nodes with linked lists for fast range queries.' : 'The 4 conditions are Mutual Exclusion, Hold & Wait, No Preemption, and Circular Wait.'}`);
+  }, 400);
+}
+
+function appendChat(role, html) {
+  const list = document.getElementById("chatMsgList");
+  const msg = document.createElement("div");
+  msg.className = `chat-msg ${role}`;
+  msg.innerHTML = `<div class="logo-icon" style="width:30px; height:30px; font-size:14px;">${role === 'bot' ? '✦' : '👤'}</div><div class="chat-bubble">${html}</div>`;
+  list.appendChild(msg);
+  list.scrollTop = list.scrollHeight;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadStudentByRoll("107");
+});
+</script>
+</body>
+</html>
